@@ -28,7 +28,7 @@ export const Navbar = () => {
                 {!isAuthenticated && !isLoading && (
                     <>
                         <SignInButton mode="modal">
-                            <Button>
+                            <Button size={"sm"}>
                                 Log In
                             </Button>
                         </SignInButton>
@@ -37,7 +37,7 @@ export const Navbar = () => {
                 {isAuthenticated && !isLoading && (
                     <>
                         <Button size={"sm"} asChild variant={"ghost"}>
-                            <Link href={"/documents"}>Dashboard</Link>
+                            <Link href={"/documents"}>Documents</Link>
                         </Button>
                         <UserButton afterSwitchSessionUrl="/" />
                     </>
