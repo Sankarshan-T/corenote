@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ConvexClientProvider } from "@/components/providers/convex-provider";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,19 +41,33 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      <ClerkProvider
+        appearance={{
+          // Try it inside 'options' instead of 'layout'
+          options: {
+            unsafe_disableDevelopmentModeWarnings: true,
+          },
+          // Keep it here as well just to be safe (v6/v7 hybrid support)
+          layout: {
+            unsafe_disableDevelopmentModeWarnings: true,
+          }
+        }}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-          storageKey="corenote-theme"
-        >
-          {children}
-        </ThemeProvider>
-      </body>
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+            storageKey="corenote-theme"
+          >
+            <ConvexClientProvider>
+              {children}
+            </ConvexClientProvider>
+          </ThemeProvider>
+        </body>
+
+      </ClerkProvider>
     </html>
   );
 }
