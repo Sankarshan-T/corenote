@@ -8,7 +8,7 @@ const BrandingLayout = ({
     return (
         <div className="h-full">
             <Navbar />
-            <main className="relative h-full">
+            <main className="h-full">
                 {children}
             </main>
         </div>

@@ -12,11 +12,11 @@ export const Logo = () => {
         <div className="hidden md:flex items-center gap-x-2">
             <Image
                 src={"/favicon-light.png"}
-                width={40}
-                height={30}
+                width={30}
+                height={20}
                 alt={"logo"}
             />
-            <p className={cn("font-semibold text-red-800", font.className)}>CoreNote</p>
+            <p className={cn("font-semibold text-primary", font.className)}>CoreNote</p>
         </div>
     );
 }
