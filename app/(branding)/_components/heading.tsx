@@ -22,7 +22,7 @@ export const Heading = () => {
             )}
             {isAuthenticated && (
                 <Button asChild>
-                    <Link href={"/document"}>
+                    <Link href={"/documents"}>
                         Go to Documents <ArrowRight className="h-2 w-2" />
                     </Link>
                 </Button>
