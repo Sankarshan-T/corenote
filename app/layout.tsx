@@ -43,11 +43,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <ClerkProvider
         appearance={{
-          // Try it inside 'options' instead of 'layout'
           options: {
             unsafe_disableDevelopmentModeWarnings: true,
           },
-          // Keep it here as well just to be safe (v6/v7 hybrid support)
           layout: {
             unsafe_disableDevelopmentModeWarnings: true,
           }
