@@ -11,7 +11,7 @@ export const UserItem = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <div role="button" className="flex items-center text-sm p-3 w-full hover:bg-primary/5">
+                <div role="button" className="flex items-center text-sm p-3 w-full hover:bg-primary/5 cursor-pointer">
                     <div className="gap-x-2 flex items-center max-w-50 ">
                         <Avatar className="h-6 w-6">
                             <AvatarImage src={user?.imageUrl} />
