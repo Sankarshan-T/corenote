@@ -23,14 +23,14 @@ const DocumentsPage = () => {
     };
 
     return (
-        <div className="h-full flex flex-col items-center justify-center space-y-4">
+        <div className="h-full flex flex-col items-center justify-center space-y-3">
             <Image
                 src={"/documents.png"}
                 alt="documents"
-                height={400}
-                width={400}
+                height={200}
+                width={200}
             />
-            <h2 className="text-lg font-medium">
+            <h2 className="text-lg font-medium text-primary">
                 Welcome to {user?.firstName}'s Notes
             </h2>
             <Button onClick={onCreate}>
