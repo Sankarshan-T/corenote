@@ -21,6 +21,7 @@ export const Toolbar = ({
     const inputRef = useRef<HTMLTextAreaElement>(null);
     const [isEditing, setIsEditing] = useState(false);
     const [value, setValue] = useState(initialData.title);
+    const removeIcon = useMutation(api.documents.removeIcon);
 
     const update = useMutation(api.documents.update);
 
@@ -50,18 +51,31 @@ export const Toolbar = ({
         }
     };
 
+    const onIconSelect = (icon: string) => {
+        update({
+            id: initialData._id,
+            icon,
+        });
+    };
+
+    const onRemoveIcon = () => {
+        removeIcon({
+            id: initialData._id,
+        });
+    };
+
 
     return (
         <div className="pl-1 group relative">
             {!!initialData.icon && !preview && (
                 <div className="flex items-center gap-x-2 group/icon pt-6">
-                    <IconPicker onChange={() => { }}>
+                    <IconPicker onChange={onIconSelect}>
                         <p className="text-6xl hover:opacity-75 transition">
                             {initialData.icon}
                         </p>
                     </IconPicker>
                     <Button
-                        onClick={() => { }}
+                        onClick={onRemoveIcon}
                         className="rounded-full opacity-0 group-hover/icon:opacity-100 transition text-muted-foreground text-sm"
                         variant={"outline"}
                         size={"icon"}
@@ -77,7 +91,7 @@ export const Toolbar = ({
             )}
             <div className="opacity-0 group-hover:opacity-100 flex items-center gap-x-1 py-4">
                 {!initialData.icon && !preview && (
-                    <IconPicker asChild onChange={() => { }}>
+                    <IconPicker asChild onChange={onIconSelect}>
                         <Button
                             className="text-muted-foreground text-xs"
                             variant={"outline"}
