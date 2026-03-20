@@ -21,15 +21,15 @@ export const Banner = ({
     const restore = useMutation(api.documents.restore);
 
     const onRemove = () => {
+        router.push("/documents");
+
         const promise = remove({ id: documentId });
 
         toast.promise(promise, {
-            success: "Deleted the note!",
             loading: "Deleting note...",
+            success: "Deleted the note!",
             error: "Failed to delete note",
         });
-
-        router.push("/documents");
     };
 
     const onRestore = () => {
@@ -43,21 +43,21 @@ export const Banner = ({
     };
 
     return (
-        <div className="w-full bg-rose-500 text-center text-sm p-2 text-primary-foreground flex items-center gap-x-2 justify-center">
-            <p>This page is currently in trash.</p>
+        <div className="w-full bg-rose-500 text-center font-semibold text-md p-2 text-white flex items-center gap-x-2 justify-center">
+            <p>⚠️ This page is currently in trash</p>
             <Button
-                size={"sm"}
+                size={"lg"}
                 onClick={onRestore}
                 variant={"outline"}
-                className="bg-transparent hover:bg-primary/5 text-primary-foreground hover:text-primary-foreground p-1 px-2 h-auto font-normal"
+                className="bg-transparent hover:bg-primary/5 text-white hover:text-white p-1 px-2 h-auto font-normal"
             >
                 Restore page
             </Button>
             <ConfirmModal onConfirm={onRemove}>
                 <Button
-                    size={"sm"}
+                    size={"lg"}
                     variant={"outline"}
-                    className="bg-transparent hover:bg-primary/5 text-primary-foreground hover:text-primary-foreground p-1 px-2 h-auto font-normal"
+                    className="bg-transparent hover:bg-primary/5 text-white hover:text-white p-1 px-2 h-auto font-normal"
                 >
                     Delete forever
                 </Button>
