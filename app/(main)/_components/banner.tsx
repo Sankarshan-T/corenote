@@ -21,7 +21,9 @@ export const Banner = ({
     const restore = useMutation(api.documents.restore);
 
     const onRemove = () => {
-        router.push("/documents");
+        setTimeout(() => {
+            router.push("/documents");
+        }, 100);
 
         const promise = remove({ id: documentId });
 

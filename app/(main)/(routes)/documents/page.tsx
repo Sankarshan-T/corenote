@@ -23,7 +23,7 @@ const DocumentsPage = () => {
     };
 
     return (
-        <div className="h-full flex flex-col items-center justify-center space-y-3">
+        <div className="h-full flex flex-col items-center justify-center overflow-x-hidden space-y-3">
             <Image
                 src={"/documents.png"}
                 alt="documents"
