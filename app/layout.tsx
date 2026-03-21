@@ -6,6 +6,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { ModalProvider } from "@/components/providers/modal-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,14 +63,16 @@ export default function RootLayout({
             storageKey="corenote-theme"
           >
             <ConvexClientProvider>
-              <Toaster position="bottom-center" />
-              <ModalProvider />
-              {children}
+              <EdgeStoreProvider>
+                <Toaster position="bottom-center" />
+                <ModalProvider />
+                {children}
+              </EdgeStoreProvider>
             </ConvexClientProvider>
           </ThemeProvider>
         </body>
 
       </ClerkProvider>
-    </html>
+    </html >
   );
 }
