@@ -47,7 +47,7 @@ const ProgressCircle = React.forwardRef<HTMLDivElement, ProgressCircleProps>(
       <div
         ref={ref}
         className={cn(
-          'relative flex flex-col items-center justify-center text-white',
+          'relative flex flex-col items-center justify-center text-white dark:text-gray-100',
           className,
         )}
         style={{
@@ -69,7 +69,7 @@ const ProgressCircle = React.forwardRef<HTMLDivElement, ProgressCircleProps>(
             cy={size / 2}
             r={radius}
             strokeWidth={strokeWidth}
-            className="fill-none stroke-gray-500"
+            className="fill-none stroke-gray-500 dark:stroke-gray-600"
           />
           {/* Progress arc */}
           <circle
@@ -77,7 +77,7 @@ const ProgressCircle = React.forwardRef<HTMLDivElement, ProgressCircleProps>(
             cy={size / 2}
             r={radius}
             strokeWidth={strokeWidth}
-            className="fill-none stroke-white"
+            className="fill-none stroke-white dark:stroke-gray-200"
             strokeDasharray={circumference}
             strokeDashoffset={offset}
             style={{ transition: 'stroke-dashoffset 0.3s ease' }} // Smooth transition

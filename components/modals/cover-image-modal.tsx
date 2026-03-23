@@ -28,23 +28,42 @@ export const CoverImageModal = () => {
         coverImage.onClose();
     }
 
-    const onChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
+    const uploadFn = async ({
+        file,
+        signal,
+        onProgressChange,
+        options,
+    }: {
+        file: File;
+        signal?: AbortSignal;
+        onProgressChange?: (progress: number) => void | Promise<void>;
+        options?: any;
+    }) => {
+        setisSubmitting(true);
+        setFile(file);
 
-        if (file) {
-            setisSubmitting(true);
-            setFile(file);
+        const res = await edgestore.publicFiles.upload({
+            file,
+            signal,
+            options: {
+                ...options,
+                replaceTargetUrl: coverImage.url,
+            },
+            onProgressChange,
+        });
 
-            const res = await edgestore.publicFiles.upload({ file });
+        await update({
+            id: params.documentId as Id<"documents">,
+            coverImage: res?.url,
+        });
 
-            await update({
-                id: params.documentId as Id<"documents">,
-                coverImage: res.url
-            });
+        setisSubmitting(false);
+        coverImage.onClose();
 
-            onClose();
-        }
-    }
+        return res;
+    };
+
+
 
     return (
         <Dialog open={coverImage.isOpen} onOpenChange={coverImage.onClose}>
@@ -54,11 +73,12 @@ export const CoverImageModal = () => {
                         Cover Image
                     </h2>
                 </DialogHeader>
-                <UploaderProvider>
+                <UploaderProvider uploadFn={uploadFn} autoUpload={true}>
                     <SingleImageDropzone
                         className="w-full outline-none"
                         disabled={isSubmitting}
-                        onChange={onChange}
+                        height={320}
+                        width={320}
                     />
                 </UploaderProvider>
             </DialogContent>
