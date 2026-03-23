@@ -9,6 +9,8 @@ import { api } from "@/convex/_generated/api";
 import { useParams } from "next/navigation";
 import { Id } from "@/convex/_generated/dataModel";
 import { useEdgeStore } from "@/lib/edgestore";
+import { Skeleton } from "./ui/skeleton";
+import { cn } from "@/lib/utils";
 
 interface CoverProps {
     url?: string;
@@ -37,28 +39,23 @@ export const Cover = ({
 
     return (
         <div
-            className={"relative w-full group h-[34vh]"}
-            style={{
-                height: url ? "35vh" : "12vh",
-                background: url ? "var(muted)" : "tansparent",
-            }}
+            className={cn(
+                "relative w-full group",
+                url && "h-[35vh] bg-muted",
+                !url && "h-[12vh] bg-transparent"
+            )}
         >
             {!!url && (
                 <Image
                     src={url}
                     fill
                     alt="cover"
-                    className="object-contain"
+                    className="object-cover"
                 />
             )}
             {url && !preview && (
                 <div
-                    className="opacity-0 group-hover:opacity-100 transition-all flex items-center gap-x-2"
-                    style={{
-                        position: "absolute",
-                        bottom: "15px",
-                        right: "15px",
-                    }}
+                    className="opacity-0 group-hover:opacity-100 transition-all absolute bottom-5 right-5 flex items-center gap-x-2"
                 >
                     <Button
                         onClick={() => coverImage.onReplace(url)}
@@ -82,4 +79,10 @@ export const Cover = ({
             )}
         </div>
     )
+};
+
+Cover.Skeleton = function CoverSkeleton() {
+    return (
+        <Skeleton className="w-full h-[35vh]" />
+    );
 };
