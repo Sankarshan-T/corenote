@@ -21,11 +21,9 @@ export const Banner = ({
     const restore = useMutation(api.documents.restore);
 
     const onRemove = () => {
-        setTimeout(() => {
-            router.push("/documents");
-        }, 100);
+        router.push("/documents/")
 
-        const promise = remove({ id: documentId });
+        const promise = remove({ id: documentId })
 
         toast.promise(promise, {
             loading: "Deleting note...",
