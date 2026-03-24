@@ -54,10 +54,11 @@ const DocumentIdPage = ({
 
     return (
         <div className="h-full overflow-y-auto">
-            <Cover url={document.coverImage} />
-            <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
-                <Toolbar initialData={document} />
+            <Cover preview url={document.coverImage} />
+            <div className="md:max-w-3xl lg:max-w-6xl mx-auto">
+                <Toolbar preview initialData={document} />
                 <Editor
+                    editable={false}
                     onChange={onChange}
                     initialContent={document.content}
                 />

@@ -27,7 +27,7 @@ export const Navigation = () => {
     const create = useMutation(api.documents.create);
 
     const isResizingRef = useRef(false);
-    const sidebarRef = useRef<HTMLElement>(null);
+    const sidebarRef = useRef<HTMLDivElement>(null);
     const navbarRef = useRef<HTMLDivElement>(null);
     const [isResetting, setIsResetting] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(isMobile);
@@ -62,7 +62,7 @@ export const Navigation = () => {
         if (sidebarRef.current && navbarRef.current) {
             sidebarRef.current.style.width = `${newWidth}px`;
             navbarRef.current.style.setProperty("left", `${newWidth}px`);
-            navbarRef.current.style.setProperty("width", `calc(100%-${newWidth}px)`)
+            navbarRef.current.style.setProperty("width", `calc(100% - ${newWidth}px)`);
         }
     };
 
@@ -193,7 +193,11 @@ export const Navigation = () => {
                     />
                 ) : (
                     <nav className="bg-transparent px-3 py-2 w-full">
-                        {isCollapsed && <MenuIcon role="button" onClick={resetWidth} className="h-6 w-6 text-muted-foreground" />}
+                        {isCollapsed &&
+                            <MenuIcon
+                                role="button" onClick={resetWidth} className="h-6 w-6 text-muted-foreground"
+                            />
+                        }
                     </nav>
                 )}
             </div>
