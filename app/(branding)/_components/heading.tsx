@@ -15,6 +15,7 @@ export const Heading = () => {
             <h1 className="text-3xl sm-text-5xl md:text-5xl font-bold">Where Ideas, Plans and Documents get united with <span className="text-primary">CoreNote</span>
             </h1>
             <h3 className="text-base sm:text-xl md:text-2xl font-medium">Make your work more productive with CoreNote</h3>
+            <h3 className="text-base sm:text-sm md:text-md font-medium text-muted-foreground">CoreNote needs you to login for you to save your work in cloud.</h3>
             {isLoading && (
                 <div className="w-full flex items-center justify-center">
                     <Spinner size={"lg"} />
@@ -31,7 +32,7 @@ export const Heading = () => {
                 <SignInButton mode="modal">
                     <Button>
                         Get started for free
-                        <ArrowRight className="h-4 w-4"/>
+                        <ArrowRight className="h-4 w-4" />
                     </Button>
                 </SignInButton>
             )}
