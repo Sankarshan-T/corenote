@@ -12,8 +12,8 @@ export const Logo = () => {
         <div className="hidden md:flex items-center gap-x-2">
             <Image
                 src={"/favicon-light.png"}
-                width={30}
-                height={20}
+                width={40}
+                height={40}
                 alt={"logo"}
             />
             <p className={cn("font-semibold text-primary", font.className)}>CoreNote</p>
