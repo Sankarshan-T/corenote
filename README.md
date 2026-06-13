@@ -1,5 +1,5 @@
 # Core Note
-## The fully advanced and note taking app. 
+## The fully advanced note taking app. 
 ### Trying to make it look like notion because I love its ui
 
 ## What its made with
